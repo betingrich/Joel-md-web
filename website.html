@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visitor Poll & Questionnaire</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Visitor Poll & Questionnaire</h1>
+        <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>
+        <nav id="menu">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="repositories.html">Repositories</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="poll">
+        <h2>Let Us Know Your Thoughts!</h2>
+
+        <!-- Question 1 -->
+        <div class="poll-question">
+            <p>Have you followed my channel?</p>
+            <button onclick="vote('followed', 'yes')">Yes</button>
+            <button onclick="vote('followed', 'no')">No</button>
+            <p id="followed-result"></p>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="poll-question">
+            <p>How do you like my bots?</p>
+            <button onclick="vote('bots', 'enjoy')">I enjoy using Joel MD</button>
+            <button onclick="vote('bots', 'features')">No, try adding some features</button>
+            <p id="bots-result"></p>
+        </div>
+
+        <!-- Pie Chart for GitHub Repo -->
+        <div class="chart-container">
+            <h3>GitHub Repository Forks & Stars</h3>
+            <canvas id="repoChart"></canvas>
+        </div>
+    </section>
+
+    <footer>
+        <p>Thank you for your feedback!</p>
+        <a href="https://www.youtube.com/channel/@wemacomic" class="button youtube-button" target="_blank">Visit My YouTube Channel</a>
+    </footer>
+
+    <script>
+        // Placeholder vote counters
+        let followedVotes = { yes: 0, no: 0 };
+        let botsVotes = { enjoy: 0, features: 0 };
+
+        // Check if user has already voted
+        function hasVoted() {
+            return localStorage.getItem('voted') === 'true';
+        }
+
+        // Vote function
+        function vote(question, answer) {
+            if (hasVoted()) {
+                alert('You have already voted!');
+                return;
+            }
+
+            if (question === 'followed') {
+                followedVotes[answer]++;
+                let totalVotes = followedVotes.yes + followedVotes.no;
+                let yesPercentage = (followedVotes.yes / totalVotes) * 100;
+                let noPercentage = (followedVotes.no / totalVotes) * 100;
+                document.getElementById('followed-result').innerText = `Yes: ${yesPercentage.toFixed(1)}%, No: ${noPercentage.toFixed(1)}%`;
+            } else if (question === 'bots') {
+                botsVotes[answer]++;
+                let totalVotes = botsVotes.enjoy + botsVotes.features;
+                let enjoyPercentage = (botsVotes.enjoy / totalVotes) * 100;
+                let featuresPercentage = (botsVotes.features / totalVotes) * 100;
+                document.getElementById('bots-result').innerText = `I enjoy using Joel MD: ${enjoyPercentage.toFixed(1)}%, No, try adding some features: ${featuresPercentage.toFixed(1)}%`;
+            }
+
+            // Mark user as having voted
+            localStorage.setItem('voted', 'true');
+        }
+
+        // Chart.js for Pie Chart
+        let ctx = document.getElementById('repoChart').getContext('2d');
+        let repoChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Forks', 'Stars'],
+                datasets: [{
+                    data: [12, 19],  // Replace with actual data
+                    backgroundColor: ['#36A2EB', '#FFCE56'],
+                    hoverBackgroundColor: ['#36A2EB', '#FFCE56']
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+    </script>
+</body>
+</html>
