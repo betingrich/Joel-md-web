@@ -48,8 +48,8 @@
 
     <footer>
         <p>Thank you for your feedback!</p>
-        <a href="https://whatsapp.com/channel/0029Vade9VgD38CPEnxfYF0M" class="button whatsapp-button" target="_blank"
-            <i class="fab fa-whatsapp"></i> Visit My YouTube Channel
+        <a href="https://chat.whatsapp.com/GxlcVwkXrPo2YwNoQI5TwS" class="button youtube-button" target="_blank">
+            <i class="fab fa-whatsapp"></i> Visit My Channel</a>
     </footer>
 
     <script>
@@ -87,22 +87,35 @@
             localStorage.setItem('voted', 'true');
         }
 
-        // Chart.js for Pie Chart
-        let ctx = document.getElementById('repoChart').getContext('2d');
-        let repoChart = new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: ['Forks', 'Stars'],
-                datasets: [{
-                    data: [12, 19],  // Replace with actual data
-                    backgroundColor: ['#36A2EB', '#FFCE56'],
-                    hoverBackgroundColor: ['#36A2EB', '#FFCE56']
-                }]
-            },
-            options: {
-                responsive: true
-            }
-        });
+        // Fetch GitHub Repository Data and Update Chart
+        async function fetchRepoData() {
+            const apiUrl = 'https://api.github.com/repos/joeljamestech2/JOEL-MD';
+            const response = await fetch(apiUrl);
+            const data = await response.json();
+
+            const forks = data.forks_count;
+            const stars = data.stargazers_count;
+
+            // Update the Chart with dynamic data
+            let ctx = document.getElementById('repoChart').getContext('2d');
+            let repoChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ['Forks', 'Stars'],
+                    datasets: [{
+                        data: [forks, stars],
+                        backgroundColor: ['#36A2EB', '#FFCE56'],
+                        hoverBackgroundColor: ['#36A2EB', '#FFCE56']
+                    }]
+                },
+                options: {
+                    responsive: true
+                }
+            });
+        }
+
+        // Call the function to fetch and display the repo data
+        fetchRepoData();
     </script>
 </body>
 </html>
