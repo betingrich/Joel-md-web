@@ -97,7 +97,7 @@
 
             // Update the Chart with dynamic data
             let ctx = document.getElementById('repoChart').getContext('2d');
-            let repoChart = new Chart(ctx, {
+            new Chart(ctx, {
                 type: 'pie',
                 data: {
                     labels: ['Forks', 'Stars'],
