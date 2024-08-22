@@ -1,0 +1,143 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: black;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header Styles */
+header {
+    background-color: #333;
+    padding: 10px;
+    position: relative;
+}
+
+h1 {
+    margin: 0;
+}
+
+/* Menu Toggle Button */
+.menu-toggle {
+    display: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: green;
+}
+
+/* Navigation Styles */
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: #444;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin: 0 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+}
+
+nav ul li a:hover {
+    background-color: green;
+}
+
+/* Section Styles */
+section {
+    padding: 20px;
+}
+
+.profile-photo {
+    width: 150px;
+    border-radius: 50%;
+}
+
+/* Button Styles */
+.button {
+    display: flex;
+    align-items: center;
+    background-color: green;
+    color: black;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    margin: 10px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.button:hover {
+    background-color: #cc6600;
+}
+
+.button i {
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+/* WhatsApp Button Styling */
+.whatsapp-button {
+    background-color: #25D366;
+    color: white;
+}
+
+.whatsapp-button:hover {
+    background-color: #1DA851;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #333;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    nav.show {
+        display: flex;
+    }
+
+    nav ul {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        margin: 0;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    nav ul li a {
+        text-decoration: none;
+        color: white;
+        padding: 10px;
+    }
+}
